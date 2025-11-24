@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 CONGRATULATIONS! You're A WINNER!</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: linear-gradient(135deg, #ff0080 0%, #ff8c00 50%, #40e0d0 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: white;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        /* 🔥 MEGA URGENCY HEADER */
+        .urgency-bar {
+            background: linear-gradient(90deg, #ff0000, #ff4500, #ff0000);
+            background-size: 200% 100%;
+            animation: urgencySlide 2s linear infinite;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 900;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+            border: 3px solid #ffff00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes urgencySlide {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        /* 🎯 EXPLOSIVE MAIN CARD */
+        .main-card {
+            background: linear-gradient(135deg, #1a0033, #330066, #1a0033);
+            border: 4px solid #ffff00;
+            border-radius: 25px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.6), inset 0 0 40px rgba(255, 215, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 0, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 🚨 MEGA WINNER BADGE */
+        .winner-badge {
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% 200%;
+            animation: goldShimmer 2s ease infinite;
+            color: #1a0033;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border: 3px solid #ff8c00;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes goldShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* 💰 EXPLOSIVE HEADLINE */
+        .main-headline {
+            font-size: 38px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #ffff00, #00ff00, #00ffff, #ff0080);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowText 3s ease infinite;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes rainbowText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* 🎁 ROTATING PRIZE SHOWCASE */
+        .prize-showcase {
+            background: linear-gradient(135deg, #4b0082, #8b008b);
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(139, 0, 139, 0.6);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .prize-showcase::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: showcaseShine 4s infinite;
+        }
+        
+        @keyframes showcaseShine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .prize-showcase-label {
+            font-size: 14px;
+            color: #ffd700;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rotating-prize {
+            position: relative;
+            z-index: 1;
+            animation: prizeRotate 0.5s ease;
+        }
+        
+        @keyframes prizeRotate {
+            0% { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .rotating-prize-name {
+            font-size: 32px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        .rotating-prize-value {
+            font-size: 20px;
+            color: #00ff00;
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+        }
+        
+        /* ⏰ COUNTDOWN - EXTREME URGENCY */
+        .countdown {
+            background: linear-gradient(135deg, #ff0000, #ff4500);
+            border: 4px solid #ffff00;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            font-weight: 900;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+            animation: countdownPulse 1s ease infinite;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes countdownPulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 0, 0, 0.8); }
+            50% { box-shadow: 0 0 60px rgba(255, 0, 0, 1); }
+        }
+        
+        #countdown-timer {
+            font-size: 36px;
+            color: #ffff00;
+            display: block;
+            margin-top: 10px;
+            text-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+            letter-spacing: 3px;
+        }
+        
+        /* 🎯 MEGA CTA BUTTON */
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 25px;
+            border: none;
+            border-radius: 20px;
+            font-size: 24px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .cta-main {
+            background: linear-gradient(135deg, #00ff00, #00cc00, #00ff00);
+            background-size: 200% 200%;
+            animation: ctaGlow 2s ease infinite;
+            color: #000;
+            box-shadow: 0 10px 40px rgba(0, 255, 0, 0.8);
+            border: 4px solid #ffff00;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes ctaGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                box-shadow: 0 10px 40px rgba(0, 255, 0, 0.8);
+            }
+            50% { 
+                background-position: 100% 50%;
+                box-shadow: 0 10px 60px rgba(0, 255, 0, 1);
+            }
+        }
+        
+        .cta-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 60px rgba(0, 255, 0, 1);
+        }
+        
+        .cta-main::before {
+            content: '✨';
+            position: absolute;
+            left: 20px;
+            font-size: 30px;
+            animation: sparkle 1s ease infinite;
+        }
+        
+        .cta-main::after {
+            content: '✨';
+            position: absolute;
+            right: 20px;
+            font-size: 30px;
+            animation: sparkle 1s ease infinite 0.5s;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        /* 📱 WINNER NOTIFICATIONS - LEFT SIDE */
+        .winner-notification {
+            position: fixed;
+            left: 20px;
+            top: 100px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: 3px solid #ffd700;
+            border-radius: 15px;
+            padding: 15px 20px;
+            box-shadow: 0 5px 25px rgba(16, 185, 129, 0.8);
+            z-index: 9999;
+            animation: slideInLeft 0.5s ease, slideOutLeft 0.5s ease 4.5s;
+            max-width: 280px;
+            display: none;
+        }
+        
+        @keyframes slideInLeft {
+            from { 
+                transform: translateX(-400px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOutLeft {
+            from { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to { 
+                transform: translateX(-400px);
+                opacity: 0;
+            }
+        }
+        
+        .winner-notification.show {
+            display: block;
+        }
+        
+        .winner-notification-title {
+            font-size: 12px;
+            color: #ffd700;
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .winner-notification-text {
+            font-size: 14px;
+            color: white;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+        
+        /* 📢 AD SPACE */
+        .ad-space {
+            background: linear-gradient(135deg, #1a1a2e, #2d2d44);
+            border: 3px dashed #ff00ff;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            color: #888;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 🎯 SECONDARY CTA - EXPLOSIVE */
+        .cta-secondary {
+            background: linear-gradient(135deg, #ff00ff, #ff1493);
+            color: white;
+            border: 4px solid #ffff00;
+            font-size: 18px;
+            box-shadow: 0 8px 30px rgba(255, 0, 255, 0.6);
+            animation: secondaryGlow 2s ease infinite;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes secondaryGlow {
+            0%, 100% { box-shadow: 0 8px 30px rgba(255, 0, 255, 0.6); }
+            50% { box-shadow: 0 8px 45px rgba(255, 0, 255, 0.9); }
+        }
+        
+        .cta-secondary:hover {
+            background: linear-gradient(135deg, #ff1493, #ff00ff);
+            transform: scale(1.05);
+        }
+        
+        /* Welcome Header */
+        .welcome-header {
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .welcome-text {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+            animation: welcomeGlow 2s ease infinite;
+            text-transform: uppercase;
+        }
+        
+        .welcome-sub {
+            font-size: 14px;
+            color: #00ffff;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        @keyframes welcomeGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px #ffd700); }
+            50% { filter: drop-shadow(0 0 30px #ffd700); }
+        }
+        
+        /* Final Stats */
+        .final-stats {
+            font-size: 16px;
+            color: #00ff00;
+            margin-top: 20px;
+            font-weight: 900;
+            text-align: center;
+            animation: statsGlow 2s ease infinite;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes statsGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 0, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(0, 255, 0, 1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 🔥 MEGA URGENCY BAR -->
+        <div class="urgency-bar">
+            🚨 EXCLUSIVE ACCESS - YOUR PRIZE IS WAITING! 🚨
+        </div>
+        
+        <!-- Welcome Header -->
+        <div class="welcome-header">
+            <div class="welcome-text">FINALLY! YOU'RE IN! 🎉</div>
+            <div class="welcome-sub">Get Ready To Claim Your Exclusive Prize</div>
+        </div>
+        
+        <!-- 🎯 MAIN EXPLOSIVE CARD -->
+        <div class="main-card">
+            <div class="winner-badge">🎉 YOU'RE A WINNER! 🎉</div>
+            
+            <div class="main-headline">
+                CLAIM YOUR MEGA PRIZE NOW!
+            </div>
+            
+            <!-- ⏰ EXPLOSIVE COUNTDOWN -->
+            <div class="countdown">
+                ⚡ YOUR ENTRY EXPIRES IN:
+                <span id="countdown-timer">15:00</span>
+            </div>
+            
+            <!-- 🎯 MEGA PRIMARY CTA - TOP -->
+            <a href="YOUR_SWEEPS_AFFILIATE_LINK" class="cta-button cta-main">
+                🎁 CLAIM YOUR PRIZE NOW! 🎁
+            </a>
+            
+            <!-- 🎁 ROTATING PRIZE DISPLAY -->
+            <div class="prize-showcase">
+                <div class="prize-showcase-label">🎯 AVAILABLE PRIZES:</div>
+                <div class="rotating-prize" id="rotatingPrize">
+                    <div class="rotating-prize-name">iPhone 15 Pro</div>
+                    <div class="rotating-prize-value">Worth $999</div>
+                </div>
+            </div>
+            
+            <!-- 🎯 MEGA PRIMARY CTA - BOTTOM -->
+            <a href="YOUR_SWEEPS_AFFILIATE_LINK" class="cta-button cta-main">
+                🎁 REVEAL YOUR PRIZE NOW! 🎁
+            </a>
+            
+            <!-- 📢 AD SPACE -->
+            <div class="ad-space">
+                <!-- Your ad code goes here -->
+                🎯 ADVERTISEMENT SPACE 🎯
+            </div>
+            
+            <!-- 🎯 EXPLOSIVE SECONDARY CTA -->
+            <a href="YOUR_WALL_PAGE_URL" class="cta-button cta-secondary">
+                🎯 UNLOCK MORE REWARDS: OFFERS, INSTALLS & SURVEYS! 🎯
+            </a>
+            
+            <div class="final-stats">
+                ✅ 2,347+ MEGA PRIZES CLAIMED THIS WEEK! ✅
+            </div>
+        </div>
+    </div>
+
+    <!-- Winner Notifications -->
+    <div class="winner-notification" id="winnerNotification">
+        <div class="winner-notification-title">🎉 RECENT WINNER!</div>
+        <div class="winner-notification-text" id="winnerText"></div>
+    </div>
+
+    <!-- ⏰ COUNTDOWN TIMER SCRIPT -->
+    <script>
+        let timeLeft = 15 * 60; // 15 minutes in seconds
+        
+        function updateCountdown() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('countdown-timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                document.querySelector('.urgency-bar').textContent = '❌ PRIZE CLAIM EXPIRED - HURRY!';
+                document.querySelector('.cta-main').style.opacity = '0.5';
+                document.querySelector('.cta-main').style.pointerEvents = 'none';
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Winner Notifications
+        const winners = [
+            "Sarah M. just won an iPhone 15 Pro! 📱",
+            "Mike T. claimed $500 Cash! 💰",
+            "Lisa K. won a Gaming Console! 🎮",
+            "Alex R. got Gift Cards worth $500! 🎁",
+            "Jennifer L. won an iPhone 15 Pro! 📱",
+            "David S. claimed $500 Cash! 💰"
+        ];
+        
+        let currentWinner = 0;
+        
+        function showWinnerNotification() {
+            const notification = document.getElementById('winnerNotification');
+            const winnerText = document.getElementById('winnerText');
+            
+            winnerText.textContent = winners[currentWinner];
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+            
+            currentWinner = (currentWinner + 1) % winners.length;
+        }
+        
+        // Show first notification after 2 seconds, then every 8 seconds
+        setTimeout(showWinnerNotification, 2000);
+        setInterval(showWinnerNotification, 8000);
+        
+        // Rotating Prize Display
+        const prizes = [
+            { name: "iPhone 15 Pro", value: "Worth $999" },
+            { name: "$500 Cash", value: "Direct Deposit" },
+            { name: "Gaming Console", value: "Worth $599" },
+            { name: "$500 Gift Cards", value: "Amazon, Walmart & More" },
+            { name: "Luxury Vacation", value: "Worth $2,000" },
+            { name: "MacBook Air", value: "Worth $1,199" },
+            { name: "$1,000 Shopping Spree", value: "Your Choice!" },
+            { name: "Smart TV 65\"", value: "Worth $899" }
+        ];
+        
+        let currentPrize = 0;
+        
+        function rotatePrize() {
+            currentPrize = (currentPrize + 1) % prizes.length;
+            const prizeElement = document.getElementById('rotatingPrize');
+            
+            // Trigger animation
+            prizeElement.style.animation = 'none';
+            setTimeout(() => {
+                prizeElement.style.animation = 'prizeRotate 0.5s ease';
+            }, 10);
+            
+            document.querySelector('.rotating-prize-name').textContent = prizes[currentPrize].name;
+            document.querySelector('.rotating-prize-value').textContent = prizes[currentPrize].value;
+        }
+        
+        // Rotate prizes every 3 seconds
+        setInterval(rotatePrize, 3000);
+        
+        // Exit-intent popup - KEPT YOUR ORIGINAL
+        document.addEventListener('mouseout', (event) => {
+            if (event.clientY < 0) {
+                if(confirm("⚡ WAIT! Don't miss out! Click OK to unlock MORE rewards - Offerwalls, App Installs, Surveys & more on Stellar!")) {
+                    window.location.href = "YOUR_WALL_PAGE_URL";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
