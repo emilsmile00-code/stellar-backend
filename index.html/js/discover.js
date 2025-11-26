@@ -68,6 +68,11 @@ window.initDiscoverPage = async function() {
     } else {
         console.log('❌ Not showing admin controls. Has access:', hasAccess, 'Element exists:', !!adminControls);
     }
+
+      const vpnAdContainer = document.getElementById('discover-vpn-ad');
+    if (vpnAdContainer) {
+        vpnAdContainer.innerHTML = createVPNOfferAd();
+    }
     
     loadDiscoverPosts();
 }
@@ -110,6 +115,90 @@ function displayDiscoverPosts() {
     }
     
     container.innerHTML = window.currentDiscoverPosts.map(post => createDiscoverCard(post)).join('');
+}
+
+// Add to discover.js
+function createVPNOfferAd() {
+    return `
+        <div class="vpn-organic-ad">
+            <div class="vpn-ad-header">
+                <h3 class="vpn-ad-title">
+                    <span>🔒</span> ParudVPN for iOS
+                </h3>
+                <div class="vpn-ad-badge">Sponsored</div>
+            </div>
+            
+            <div class="vpn-ad-content">
+                <div class="vpn-ad-features">
+                    <div class="vpn-ad-feature">
+                        <div class="vpn-ad-feature-icon">🛡️</div>
+                        <div class="vpn-ad-feature-text">
+                            <h4>Ultimate Privacy Protection</h4>
+                            <p>Bank-grade encryption keeps your data secure</p>
+                        </div>
+                    </div>
+                    
+                    <div class="vpn-ad-feature">
+                        <div class="vpn-ad-feature-icon">⚡</div>
+                        <div class="vpn-ad-feature-text">
+                            <h4>Lightning Fast Speeds</h4>
+                            <p>Stream and browse without buffering</p>
+                        </div>
+                    </div>
+                    
+                    <div class="vpn-ad-feature">
+                        <div class="vpn-ad-feature-icon">🌍</div>
+                        <div class="vpn-ad-feature-text">
+                            <h4>Global Access</h4>
+                            <p>Connect to servers in 50+ countries worldwide</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vpn-ad-cta">
+                    <button class="vpn-ad-button" onclick="trackOrganicVPNOffer()">
+                        <span>📱</span> Download for iOS
+                    </button>
+                    
+                    <div class="vpn-ad-device">
+                        <span>✅</span> Optimized for iPhone & iPad
+                    </div>
+                    
+                    <p class="vpn-ad-note">
+                        Free trial available • No credit card required
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Add tracking function
+function trackOrganicVPNOffer() {
+    console.log('Organic VPN offer clicked');
+    
+    // Track the click (non-incent)
+    if (window.supabaseClient && window.currentUser) {
+        window.supabaseClient
+            .from('offer_clicks')
+            .insert({
+                user_id: window.currentUser.id,
+                offer_type: 'organic_vpn',
+                platform: 'ios',
+                created_at: new Date().toISOString()
+            })
+            .then(() => {
+                console.log('VPN offer click tracked');
+            });
+    }
+    
+    // Redirect to offer (replace with your actual offer URL)
+    window.open('https://apps.apple.com/app/parudvpn', '_blank');
+    
+    // Show notification
+    if (typeof showNotification === 'function') {
+        showNotification('Opening ParudVPN in App Store...', 'info');
+    }
 }
 
 // Create discover post card
@@ -266,6 +355,90 @@ function checkDiscoverPostLink() {
                 }
             }, 500);
         }, 100);
+    }
+}
+
+// Add to discover.js
+function createVPNOfferAd() {
+    return `
+        <div class="vpn-organic-ad">
+            <div class="vpn-ad-header">
+                <h3 class="vpn-ad-title">
+                    <span>🔒</span> ParudVPN for iOS
+                </h3>
+                <div class="vpn-ad-badge">Sponsored</div>
+            </div>
+            
+            <div class="vpn-ad-content">
+                <div class="vpn-ad-features">
+                    <div class="vpn-ad-feature">
+                        <div class="vpn-ad-feature-icon">🛡️</div>
+                        <div class="vpn-ad-feature-text">
+                            <h4>Ultimate Privacy Protection</h4>
+                            <p>Bank-grade encryption keeps your data secure</p>
+                        </div>
+                    </div>
+                    
+                    <div class="vpn-ad-feature">
+                        <div class="vpn-ad-feature-icon">⚡</div>
+                        <div class="vpn-ad-feature-text">
+                            <h4>Lightning Fast Speeds</h4>
+                            <p>Stream and browse without buffering</p>
+                        </div>
+                    </div>
+                    
+                    <div class="vpn-ad-feature">
+                        <div class="vpn-ad-feature-icon">🌍</div>
+                        <div class="vpn-ad-feature-text">
+                            <h4>Global Access</h4>
+                            <p>Connect to servers in 50+ countries worldwide</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vpn-ad-cta">
+                    <button class="vpn-ad-button" onclick="trackOrganicVPNOffer()">
+                        <span>📱</span> Download for iOS
+                    </button>
+                    
+                    <div class="vpn-ad-device">
+                        <span>✅</span> Optimized for iPhone & iPad
+                    </div>
+                    
+                    <p class="vpn-ad-note">
+                        Free trial available • No credit card required
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Add tracking function
+function trackOrganicVPNOffer() {
+    console.log('Organic VPN offer clicked');
+    
+    // Track the click (non-incent)
+    if (window.supabaseClient && window.currentUser) {
+        window.supabaseClient
+            .from('offer_clicks')
+            .insert({
+                user_id: window.currentUser.id,
+                offer_type: 'organic_vpn',
+                platform: 'ios',
+                created_at: new Date().toISOString()
+            })
+            .then(() => {
+                console.log('VPN offer click tracked');
+            });
+    }
+    
+    // Redirect to offer (replace with your actual offer URL)
+    window.open('https://apps.apple.com/app/parudvpn', '_blank');
+    
+    // Show notification
+    if (typeof showNotification === 'function') {
+        showNotification('Opening ParudVPN in App Store...', 'info');
     }
 }
 
