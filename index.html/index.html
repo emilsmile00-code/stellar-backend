@@ -32,7 +32,7 @@
 <body>
 
 <nav class="container">
-    <div class="logo" onclick="showPage('home')">
+    <div class="logo" onclick="showPageWithUrl('home')">
         <div class="logo-icon">
             <svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -61,12 +61,14 @@
         <span></span>
     </div>
     <div class="nav-links">
-        <a id="nav-tech" onclick="showPage('tech'); closeMobileMenu();">Tech</a>
-        <a id="nav-finance" onclick="showPage('finance'); closeMobileMenu();">Finance</a>
-        <a id="nav-gambling" onclick="showPage('gambling'); closeMobileMenu();">Gambling</a>
-        <a id="nav-fashion" onclick="showPage('fashion'); closeMobileMenu();">Fashion</a>
-        <a id="nav-lifestyle" onclick="showPage('lifestyle'); closeMobileMenu();">Lifestyle</a>
-        <a id="nav-wall" onclick="showPage('wall'); closeMobileMenu();">Wall</a>
+        <a id="nav-tech" onclick="showPageWithUrl('tech'); closeMobileMenu();">Tech</a>
+        <a id="nav-finance" onclick="showPageWithUrl('finance'); closeMobileMenu();">Finance</a>
+        <a id="nav-gambling" onclick="showPageWithUrl('gambling'); closeMobileMenu();">Gambling</a>
+        <a id="nav-fashion" onclick="showPageWithUrl('fashion'); closeMobileMenu();">Fashion</a>
+        <a id="nav-lifestyle" onclick="showPageWithUrl('lifestyle'); closeMobileMenu();">Lifestyle</a>
+        <a id="nav-viral" onclick="showPageWithUrl('viral'); closeMobileMenu();">Viral</a>
+        <a id="nav-discover" onclick="showPageWithUrl('discover'); closeMobileMenu();">Discover</a>
+        <a id="nav-wall" onclick="showPageWithUrl('wall'); closeMobileMenu();">Wall</a>
         
         <div id="auth-buttons">
             <a onclick="openAuthModal('login')" style="background: rgba(0,212,255,0.1); padding: 8px 16px; border-radius: 8px;">Login</a>
@@ -361,6 +363,83 @@
             <div style="grid-column: 1 / -1; text-align: center; color: #888; padding: 40px;">
                 <div class="loading-spinner"></div>
                 <p style="margin-top: 20px;">Loading lifestyle news...</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- LIFESTYLE PAGE -->
+<div class="page" id="lifestyle-page">
+    ...existing content...
+</div>
+
+<!-- VIRAL PAGE -->
+<div class="page" id="viral-page">
+    <section class="hero viral-hero">
+        <button class="back-button" onclick="showPage('home')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            Back to Home
+        </button>
+        <h1><span>Viral</span> Content</h1>
+        <p>Discover trending videos, memes, and viral content from across the web</p>
+        
+        <!-- Category Filters -->
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
+            <button class="category-filter active" data-category="all" onclick="filterViralCategory('all')">All</button>
+            <button class="category-filter" data-category="movies" onclick="filterViralCategory('movies')">🎬 Movies</button>
+            <button class="category-filter" data-category="comedy" onclick="filterViralCategory('comedy')">😂 Comedy</button>
+            <button class="category-filter" data-category="music" onclick="filterViralCategory('music')">🎵 Music</button>
+            <button class="category-filter" data-category="sports" onclick="filterViralCategory('sports')">⚽ Sports</button>
+            <button class="category-filter" data-category="gaming" onclick="filterViralCategory('gaming')">🎮 Gaming</button>
+        </div>
+    </section>
+
+    <!-- Admin Controls (Visible only to admins/creators) -->
+    <div id="viral-admin-controls" style="display: none; text-align: center; margin: 30px 0;">
+        <button onclick="openViralPostModal()" class="auth-submit-btn" style="background: linear-gradient(135deg, #ff3399, #ff8800); display: inline-flex; align-items: center; gap: 10px;">
+            🎬 Create Viral Post
+        </button>
+    </div>
+
+    <section class="container">
+        <h2 class="section-title">Trending <span class="text-gradient-fashion">Viral Content</span></h2>
+        <div class="grid grid-2" id="viral-posts">
+            <div style="grid-column: 1 / -1; text-align: center; color: #888; padding: 40px;">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: 20px;">Loading viral content...</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- DISCOVER PAGE -->
+<div class="page" id="discover-page">
+    <section class="hero" style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(157,0,255,0.1));">
+        <button class="back-button" onclick="showPage('home')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            Back to Home
+        </button>
+        <h1><span>Discover</span></h1>
+        <p>Exclusive discoveries, insights, and curated content from our creators</p>
+    </section>
+
+    <!-- Admin Controls (Visible only to admins/creators) -->
+    <div id="discover-admin-controls" style="display: none; text-align: center; margin: 30px 0;">
+        <button onclick="openDiscoverPostModal()" class="auth-submit-btn" style="display: inline-flex; align-items: center; gap: 10px;">
+            ✨ Create Discovery
+        </button>
+    </div>
+
+    <section class="container">
+        <h2 class="section-title">Latest <span class="text-gradient-tech">Discoveries</span></h2>
+        <div class="grid grid-2" id="discover-posts">
+            <div style="grid-column: 1 / -1; text-align: center; color: #888; padding: 40px;">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: 20px;">Loading discoveries...</p>
             </div>
         </div>
     </section>
@@ -689,6 +768,152 @@
     box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
 }
 </style>
+
+<script>
+// ======================================
+// URL ROUTING SYSTEM - COMPLETE VERSION
+// ======================================
+
+// New function that updates URL and shows page
+function showPageWithUrl(pageName) {
+    updateUrl(pageName);
+    showPage(pageName);
+}
+
+function handleUrlRouting() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Handle direct page links
+    const page = urlParams.get('page');
+    if (page) {
+        console.log('🔗 Routing to page:', page);
+        if (typeof showPage === 'function') {
+            // Small delay to ensure page is loaded
+            setTimeout(() => {
+                showPage(page);
+            }, 100);
+        }
+    }
+    
+    // Handle direct discover post links
+    const discoverId = urlParams.get('discover');
+    if (discoverId) {
+        console.log('🔗 Routing to discover post:', discoverId);
+        setTimeout(() => {
+            if (typeof showPage === 'function') {
+                showPage('discover');
+            }
+            // The discover.js will handle opening the specific post
+        }, 500);
+    }
+    
+    // Handle direct viral post links  
+    const viralId = urlParams.get('viral');
+    if (viralId) {
+        console.log('🔗 Routing to viral post:', viralId);
+        setTimeout(() => {
+            if (typeof showPage === 'function') {
+                showPage('viral');
+            }
+            // The viral.js will handle opening the specific post
+        }, 500);
+    }
+    
+    // Handle direct wall page links
+    const wall = urlParams.get('wall');
+    if (wall === 'true' || wall === '1') {
+        console.log('🔗 Routing to wall page');
+        setTimeout(() => {
+            if (typeof showPage === 'function') {
+                showPage('wall');
+            }
+        }, 100);
+    }
+}
+
+// Update URL when navigating pages
+function updateUrl(pageName) {
+    const url = new URL(window.location);
+    
+    // Clear all page parameters
+    url.searchParams.delete('page');
+    url.searchParams.delete('discover');
+    url.searchParams.delete('viral');
+    url.searchParams.delete('wall');
+    
+    // Set the current page
+    if (pageName === 'wall') {
+        url.searchParams.set('wall', 'true');
+    } else if (pageName !== 'home') {
+        url.searchParams.set('page', pageName);
+    } else {
+        // For home page, clear all parameters
+        url.search = '';
+    }
+    
+    window.history.pushState({}, '', url);
+}
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function() {
+    handleUrlRouting();
+});
+
+// Initialize routing on page load
+document.addEventListener('DOMContentLoaded', function() {
+    handleUrlRouting();
+});
+
+// Function to generate wall page share URL
+function getWallShareUrl() {
+    return `${window.location.origin}${window.location.pathname}?wall=true`;
+}
+
+// Wall page sharing function
+function shareWallPage() {
+    const shareUrl = getWallShareUrl();
+    const title = 'Stellar Offer Wall - Earn Rewards';
+    const text = 'Complete offers, surveys, and tasks to earn money on Stellar!';
+    
+    if (navigator.share) {
+        navigator.share({
+            title: title,
+            text: text,
+            url: shareUrl
+        }).then(() => {
+            console.log('Wall page shared successfully');
+        }).catch((error) => {
+            console.log('Error sharing:', error);
+            copyWallLink(shareUrl);
+        });
+    } else {
+        copyWallLink(shareUrl);
+    }
+}
+
+function copyWallLink(url) {
+    navigator.clipboard.writeText(url).then(() => {
+        if (typeof showNotification === 'function') {
+            showNotification('Wall link copied to clipboard!', 'success');
+        } else {
+            alert('Wall link copied! Share this URL: ' + url);
+        }
+    }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        if (typeof showNotification === 'function') {
+            showNotification('Wall link copied to clipboard!', 'success');
+        } else {
+            alert('Wall link copied!');
+        }
+    });
+}
+</script>
 
 <script>
 // Toggle guidelines expand/collapse
@@ -1048,6 +1273,8 @@ footer button:hover {
 <script src="js/ogads.js"></script>
 <script src="js/cpagrip.js"></script>
 <script src="js/cpalead.js"></script>
+<script src="js/viral.js"></script>
+<script src="js/discover.js"></script>
 <script src="js/wall.js"></script>
 
 <!-- Payout Settings Modal - UPDATED WITH GIFT CARD SUPPORT -->
@@ -1627,7 +1854,87 @@ console.log('✅ Chat System Loaded');
 #chat-messages-container::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.3); border-radius: 3px; }
 </style>
 
+<!-- VIRAL POST MODAL -->
+<div id="viral-post-modal" class="auth-modal" style="display: none;">
+    <div class="auth-modal-content" style="max-width: 600px;">
+        <span class="auth-modal-close" onclick="closeViralPostModal()">&times;</span>
+        <h2 style="color: #ff3399; margin-bottom: 25px; text-align: center;">🎬 Create Viral Post</h2>
+        
+        <form id="viral-post-form" onsubmit="submitViralPost(event)">
+            <div class="auth-form-group">
+                <label>Title</label>
+                <input type="text" id="viral-title" class="auth-input" placeholder="Enter post title" required>
+            </div>
+            
+            <div class="auth-form-group">
+                <label>Video URL</label>
+                <input type="url" id="viral-video-url" class="auth-input" placeholder="https://example.com/video" required>
+            </div>
+            
+            <div class="auth-form-group">
+                <label>Category</label>
+                <select id="viral-category" class="auth-input" required>
+                    <option value="">Select category</option>
+                    <option value="movies">🎬 Movies</option>
+                    <option value="comedy">😂 Comedy</option>
+                    <option value="music">🎵 Music</option>
+                    <option value="sports">⚽ Sports</option>
+                    <option value="gaming">🎮 Gaming</option>
+                </select>
+            </div>
+            
+            <div class="auth-form-group">
+                <label>Description</label>
+                <textarea id="viral-description" class="auth-input" placeholder="Enter video description" rows="4" required></textarea>
+            </div>
+            
+            <div class="auth-form-group">
+                <label>Thumbnail URL (Optional)</label>
+                <input type="url" id="viral-thumbnail" class="auth-input" placeholder="https://example.com/thumbnail.jpg">
+                <small style="color: #888; font-size: 0.8rem;">Leave empty for default category thumbnail</small>
+            </div>
+            
+            <button type="submit" class="auth-submit-btn" style="background: linear-gradient(135deg, #ff3399, #ff8800);">
+                🚀 Publish Viral Post
+            </button>
+        </form>
+    </div>
+</div>
 
+<!-- DISCOVER POST MODAL -->
+<div id="discover-post-modal" class="auth-modal" style="display: none;">
+    <div class="auth-modal-content" style="max-width: 600px;">
+        <span class="auth-modal-close" onclick="closeDiscoverPostModal()">&times;</span>
+        <h2 style="color: #00d4ff; margin-bottom: 25px; text-align: center;">✨ Create Discovery</h2>
+        
+        <form id="discover-post-form" onsubmit="submitDiscoverPost(event)">
+            <div class="auth-form-group">
+                <label>Title</label>
+                <input type="text" id="discover-title" class="auth-input" placeholder="Enter discovery title" required>
+            </div>
+            
+            <div class="auth-form-group">
+                <label>Content</label>
+                <textarea id="discover-content" class="auth-input" placeholder="Share your discovery..." rows="6" required></textarea>
+            </div>
+            
+            <div class="auth-form-group">
+                <label>Image URL (Optional)</label>
+                <input type="url" id="discover-image" class="auth-input" placeholder="https://example.com/image.jpg">
+            </div>
+            
+            <div class="auth-form-group">
+                <label>External Link (Optional)</label>
+                <input type="url" id="discover-link" class="auth-input" placeholder="https://example.com">
+                <small style="color: #888; font-size: 0.8rem;">Add a link for users to visit</small>
+            </div>
+            
+            <button type="submit" class="auth-submit-btn">
+                ✨ Publish Discovery
+            </button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

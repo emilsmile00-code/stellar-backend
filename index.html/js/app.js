@@ -109,6 +109,22 @@ if (pageName === 'wall') {
         }, 100);
     }
 }
+
+     // ⭐ INITIALIZE VIRAL PAGE
+    if (pageName === 'viral') {
+        console.log('🔥 Loading Viral page...');
+        if (typeof initViralPage === 'function') {
+            initViralPage();
+        }
+    }
+    
+    // ⭐ INITIALIZE DISCOVER PAGE
+    if (pageName === 'discover') {
+        console.log('✨ Loading Discover page...');
+        if (typeof initDiscoverPage === 'function') {
+            initDiscoverPage();
+        }
+    }
     
     // Scroll to top
     window.scrollTo(0, 0);

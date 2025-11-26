@@ -1026,3 +1026,446 @@ body {
         padding: 6px 12px;
     }
 }
+
+/* Admin Chat Notification Badge Styles */
+.admin-chat-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff3399;
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border: 2px solid #0a0a1e;
+    animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 51, 153, 0.7);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(255, 51, 153, 0);
+    }
+}
+
+.nav-link-with-badge {
+    position: relative;
+    display: inline-block;
+}
+
+/* Category Filter Buttons */
+.category-filter {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid transparent;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.category-filter:hover {
+    background: rgba(255,51,153,0.2);
+    border-color: rgba(255,51,153,0.5);
+    transform: translateY(-2px);
+}
+
+.category-filter.active {
+    background: linear-gradient(135deg, #ff3399, #ff8800);
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(255,51,153,0.4);
+}
+
+/* Viral Post Card Styles */
+.viral-card {
+    background: #16162a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.viral-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,51,153,0.5);
+    box-shadow: 0 10px 30px rgba(255,51,153,0.3);
+}
+
+.viral-card-thumbnail {
+    width: 100%;
+    height: 200px;
+    background: #0f0f14;
+    position: relative;
+    overflow: hidden;
+}
+
+.viral-card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.viral-card-thumbnail::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: white;
+    background: rgba(0,0,0,0.6);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.viral-card:hover .viral-card-thumbnail::after {
+    background: rgba(255,51,153,0.8);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.viral-card-content {
+    padding: 20px;
+}
+
+.viral-card-category {
+    display: inline-block;
+    background: rgba(255,51,153,0.2);
+    color: #ff3399;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.viral-card h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.viral-card p {
+    color: #aaa;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.viral-card-footer {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.viral-card-share {
+    display: flex;
+    gap: 10px;
+}
+
+.share-btn {
+    background: rgba(255,51,153,0.1);
+    border: 1px solid rgba(255,51,153,0.3);
+    color: #ff3399;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.share-btn:hover {
+    background: rgba(255,51,153,0.3);
+    transform: translateY(-2px);
+}
+
+/* Discover Post Card Styles */
+.discover-card {
+    background: #16162a;
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    border-left: 4px solid #00d4ff;
+}
+
+.discover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,212,255,0.3);
+}
+
+.discover-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.discover-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #00d4ff, #9d00ff);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.discover-card h3 {
+    flex: 1;
+    margin: 0;
+    font-size: 1.5rem;
+    color: #00d4ff;
+    text-align: left;
+}
+
+.discover-card-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background: #0f0f14;
+}
+
+.discover-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.discover-card-content {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.discover-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.discover-card-meta {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.discover-card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Mobile Responsiveness for New Pages */
+@media (max-width: 768px) {
+    .category-filter {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .viral-card-thumbnail {
+        height: 180px;
+    }
+    
+    .viral-card-content,
+    .discover-card {
+        padding: 15px;
+    }
+    
+    .discover-card-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .discover-card h3 {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .viral-card-thumbnail {
+        height: 150px;
+    }
+    
+    .viral-card-footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .discover-card-footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
+
+/* ======================================
+   MOBILE AUTH OPTIMIZATION
+   ====================================== */
+
+@media (max-width: 768px) {
+    /* Fix mobile menu layout */
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+    
+    /* Auth section styling for mobile */
+    #auth-buttons, #user-menu {
+        order: 100; /* Move to bottom of mobile menu */
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        width: 90%;
+        text-align: center;
+    }
+    
+    #auth-buttons a, .user-button {
+        width: 100%;
+        justify-content: center;
+        padding: 15px !important;
+        font-size: 1.1rem;
+        margin: 5px 0;
+    }
+    
+    /* User dropdown for mobile */
+    .user-dropdown {
+        position: fixed !important;
+        bottom: 20px;
+        left: 10px;
+        right: 10px;
+        top: auto !important;
+        max-height: 60vh;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+        border-radius: 12px 12px 0 0;
+    }
+    
+    /* Better mobile menu item spacing */
+    nav a {
+        padding: 18px 15px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    /* Balance display optimization for mobile */
+    .user-button::after {
+        content: "" !important; /* Remove balance text on mobile */
+    }
+    
+    #user-balance, #user-pending {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Even smaller screens */
+    .nav-links {
+        padding: 15px 0;
+    }
+    
+    nav a {
+        padding: 16px 15px;
+        font-size: 1rem;
+    }
+    
+    #auth-buttons a, .user-button {
+        padding: 14px !important;
+        font-size: 1rem;
+    }
+    
+    .user-dropdown {
+        max-height: 50vh;
+    }
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+    .auth-submit-btn, .category-filter, .share-btn, .back-button {
+        min-height: 44px; /* Apple recommended touch target */
+        padding: 12px 20px !important;
+    }
+    
+    /* Modal improvements for mobile */
+    .auth-modal-content {
+        margin: 20px 10px;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    
+    /* Post card touch improvements */
+    .viral-card, .discover-card {
+        min-height: 60px;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Mobile-first improvements for auth elements */
+#auth-buttons a, .user-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* Balance display optimization */
+.user-button {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .user-button {
+        max-width: none;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .user-button span:first-child {
+        font-size: 0.9rem;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/* Ensure mobile menu doesn't get too tall */
+@media (max-width: 768px) {
+    .nav-links {
+        max-height: 85vh;
+    }
+    
+    body.nav-open {
+        overflow: hidden;
+    }
+}
