@@ -32,21 +32,116 @@ window.closeMobileMenu = function() {
 };
 
 // ======================================
+// WALL WELCOME MODAL FUNCTIONS
+// ======================================
+window.showWallWelcomeModal = function() {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('wall-welcome-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'wall-welcome-modal';
+        modal.className = 'auth-modal';
+        modal.innerHTML = `
+            <div class="auth-modal-content" style="max-width: 550px; text-align: center;">
+                <span class="auth-modal-close" onclick="closeWallWelcomeModal()">&times;</span>
+                
+                <div style="margin-bottom: 30px;">
+                    <div style="font-size: 5rem; margin-bottom: 20px; animation: float 3s ease-in-out infinite;">🎁</div>
+                    <h2 style="color: #00d4ff; margin: 0 0 15px 0; font-size: 1.8rem;">Welcome to The Wall</h2>
+                    <p style="color: #888; font-size: 1.1rem; margin: 0;">Your Gateway to Rewards & Gift Cards</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(157,0,255,0.08)); border-radius: 16px; padding: 25px; margin-bottom: 25px; text-align: left;">
+                    <div style="display: grid; gap: 18px;">
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="background: linear-gradient(135deg, #00d4ff, #0099cc); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <span style="font-size: 1.3rem;">💰</span>
+                            </div>
+                            <div>
+                                <h4 style="color: #fff; margin: 0 0 5px 0; font-size: 1rem;">Earn During Your Free Time</h4>
+                                <p style="color: #aaa; margin: 0; font-size: 0.9rem; line-height: 1.5;">Complete simple surveys, tasks, and offers to earn rewards at your own pace.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="background: linear-gradient(135deg, #00ff88, #00cc6a); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <span style="font-size: 1.3rem;">🎴</span>
+                            </div>
+                            <div>
+                                <h4 style="color: #fff; margin: 0 0 5px 0; font-size: 1rem;">Redeem for Gift Cards</h4>
+                                <p style="color: #aaa; margin: 0; font-size: 0.9rem; line-height: 1.5;">Exchange your earnings for popular gift cards from Amazon, Steam, PayPal, and more.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="background: linear-gradient(135deg, #9d00ff, #7700cc); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <span style="font-size: 1.3rem;">⚡</span>
+                            </div>
+                            <div>
+                                <h4 style="color: #fff; margin: 0 0 5px 0; font-size: 1rem;">Quick & Easy Process</h4>
+                                <p style="color: #aaa; margin: 0; font-size: 0.9rem; line-height: 1.5;">Weekly payouts every Friday. Track your progress in real-time on your dashboard.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="color: #666; font-size: 0.9rem; margin-bottom: 25px;">Sign in or create an account to start earning today!</p>
+
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <button onclick="closeWallWelcomeModal(); openAuthModal('login');" class="auth-submit-btn" style="background: linear-gradient(135deg, #00d4ff, #0099cc); display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-size: 1rem;">
+                        🔐 Login / Sign Up
+                    </button>
+                    <button onclick="closeWallWelcomeModal();" style="background: rgba(255,255,255,0.1); color: #fff; border: 2px solid rgba(255,255,255,0.2); padding: 14px 28px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: all 0.3s ease;">
+                        Maybe Later
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        // Add floating animation style if not exists
+        if (!document.getElementById('wall-welcome-styles')) {
+            const style = document.createElement('style');
+            style.id = 'wall-welcome-styles';
+            style.textContent = `
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-10px); }
+                }
+                #wall-welcome-modal .auth-modal-content {
+                    animation: slideDown 0.3s ease-out;
+                }
+                @keyframes slideDown {
+                    from { opacity: 0; transform: translateY(-20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+    
+    modal.style.display = 'block';
+};
+
+window.closeWallWelcomeModal = function() {
+    const modal = document.getElementById('wall-welcome-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+};
+
+// ======================================
 // NAVIGATION FUNCTIONS WITH AUTH CHECK
 // ======================================
 window.showPage = function(pageName) {
     console.log('📄 Navigating to:', pageName);
     
-    // ⭐ CHECK AUTHENTICATION FOR WALL PAGE
+    // ⭐ CHECK AUTHENTICATION FOR WALL PAGE - Show welcome modal instead of just login
     if (pageName === 'wall') {
         if (!window.currentUser) {
             console.log('🔒 Wall page requires authentication');
-            // Show login modal instead
-            openAuthModal('login');
-            // Show notification
-            if (typeof showNotification === 'function') {
-                showNotification('Please login to access the Offer Wall', 'error');
-            }
+            // Show wall welcome modal with info about the wall
+            showWallWelcomeModal();
             return; // Stop navigation
         }
     }

@@ -4,7 +4,374 @@
 
 window.currentDiscoverPosts = [];
 
-// Check if user is admin or creator
+// ======================================
+// SWEEPS OFFERS DATA - EDIT YOUR OFFERS HERE
+// ======================================
+
+// Default offers (used if no saved data exists)
+const defaultSweepsOffers = [
+    {
+        id: 1,
+        title: "Sweepstakes Offer 1",
+        badge: "Sweepstakes",
+        icon: "🎁",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎁",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer1",
+        offerType: "sweeps_1"
+    },
+    {
+        id: 2,
+        title: "Sweepstakes Offer 2",
+        badge: "Sweepstakes",
+        icon: "🎰",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎰",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer2",
+        offerType: "sweeps_2"
+    },
+    {
+        id: 3,
+        title: "Sweepstakes Offer 3",
+        badge: "Sweepstakes",
+        icon: "💎",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "💎",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer3",
+        offerType: "sweeps_3"
+    },
+    {
+        id: 4,
+        title: "Sweepstakes Offer 4",
+        badge: "Sweepstakes",
+        icon: "🌟",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🌟",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer4",
+        offerType: "sweeps_4"
+    },
+    {
+        id: 5,
+        title: "Sweepstakes Offer 5",
+        badge: "Sweepstakes",
+        icon: "🎪",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎪",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer5",
+        offerType: "sweeps_5"
+    },
+    {
+        id: 6,
+        title: "Sweepstakes Offer 6",
+        badge: "Sweepstakes",
+        icon: "🎲",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎲",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer6",
+        offerType: "sweeps_6"
+    },
+    {
+        id: 7,
+        title: "Sweepstakes Offer 7",
+        badge: "Sweepstakes",
+        icon: "🎯",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎯",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer7",
+        offerType: "sweeps_7"
+    },
+    {
+        id: 8,
+        title: "Sweepstakes Offer 8",
+        badge: "Sweepstakes",
+        icon: "🏅",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🏅",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer8",
+        offerType: "sweeps_8"
+    },
+    {
+        id: 9,
+        title: "Sweepstakes Offer 9",
+        badge: "Sweepstakes",
+        icon: "🎀",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎀",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer9",
+        offerType: "sweeps_9"
+    },
+    {
+        id: 10,
+        title: "Sweepstakes Offer 10",
+        badge: "Sweepstakes",
+        icon: "💵",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "💵",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer10",
+        offerType: "sweeps_10"
+    },
+    {
+        id: 11,
+        title: "Sweepstakes Offer 11",
+        badge: "Sweepstakes",
+        icon: "🎊",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎊",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer11",
+        offerType: "sweeps_11"
+    },
+    {
+        id: 12,
+        title: "Sweepstakes Offer 12",
+        badge: "Sweepstakes",
+        icon: "🎉",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎉",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer12",
+        offerType: "sweeps_12"
+    },
+    {
+        id: 13,
+        title: "Sweepstakes Offer 13",
+        badge: "Sweepstakes",
+        icon: "🎈",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎈",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer13",
+        offerType: "sweeps_13"
+    },
+    {
+        id: 14,
+        title: "Sweepstakes Offer 14",
+        badge: "Sweepstakes",
+        icon: "🏆",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🏆",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer14",
+        offerType: "sweeps_14"
+    },
+    {
+        id: 15,
+        title: "Sweepstakes Offer 15",
+        badge: "Sweepstakes",
+        icon: "💫",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "💫",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer15",
+        offerType: "sweeps_15"
+    },
+    {
+        id: 16,
+        title: "Sweepstakes Offer 16",
+        badge: "Sweepstakes",
+        icon: "✨",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "✨",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer16",
+        offerType: "sweeps_16"
+    },
+    {
+        id: 17,
+        title: "Sweepstakes Offer 17",
+        badge: "Sweepstakes",
+        icon: "🎁",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎁",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer17",
+        offerType: "sweeps_17"
+    },
+    {
+        id: 18,
+        title: "Sweepstakes Offer 18",
+        badge: "Sweepstakes",
+        icon: "🎰",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🎰",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer18",
+        offerType: "sweeps_18"
+    },
+    {
+        id: 19,
+        title: "Sweepstakes Offer 19",
+        badge: "Sweepstakes",
+        icon: "💎",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "💎",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer19",
+        offerType: "sweeps_19"
+    },
+    {
+        id: 20,
+        title: "Sweepstakes Offer 20",
+        badge: "Sweepstakes",
+        icon: "🌟",
+        features: [
+            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
+            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
+            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
+        ],
+        buttonText: "Enter Now",
+        buttonIcon: "🌟",
+        deviceText: "Available on all devices",
+        noteText: "No purchase necessary • Free entry",
+        offerUrl: "https://example.com/offer20",
+        offerType: "sweeps_20"
+    }
+];
+
+// Load saved offers from localStorage or use defaults
+function loadSweepsOffers() {
+    try {
+        const saved = localStorage.getItem('sweepsOffers');
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            console.log('📂 Loaded sweeps offers from localStorage:', parsed.length, 'offers');
+            return parsed;
+        }
+    } catch (e) {
+        console.error('Failed to load from localStorage:', e);
+    }
+    console.log('📂 Using default sweeps offers');
+    return defaultSweepsOffers;
+}
+
+// Initialize sweepsOffers from localStorage or defaults
+window.sweepsOffers = loadSweepsOffers();
+
+// Check if user is admin ONLY (removed creator access)
 window.checkDiscoverAccess = async function() {
     if (!window.currentUser || !window.supabaseClient) {
         console.log('❌ No current user or supabase client');
@@ -14,7 +381,7 @@ window.checkDiscoverAccess = async function() {
     console.log('🔍 Checking discover access for user:', window.currentUser.id);
     
     try {
-        // Check if admin
+        // Check if admin ONLY
         const { data: adminData, error: adminError } = await window.supabaseClient
             .from('admin_users')
             .select('*')
@@ -28,22 +395,9 @@ window.checkDiscoverAccess = async function() {
             return true;
         }
         
-        // Check if creator
-        const { data: creatorData, error: creatorError } = await window.supabaseClient
-            .from('discover_creators')
-            .select('*')
-            .eq('user_id', window.currentUser.id)
-            .eq('is_approved', true)
-            .single();
+        // REMOVED: Creator check - only admins can create discover posts
         
-        console.log('Creator check result:', { creatorData, creatorError });
-        
-        if (creatorData && !creatorError) {
-            console.log('✅ User is approved creator!');
-            return true;
-        }
-        
-        console.log('❌ User has no discover access');
+        console.log('❌ User is not an admin');
         return false;
     } catch (error) {
         console.error('Error checking discover access:', error);
@@ -59,6 +413,9 @@ window.initDiscoverPage = async function() {
     const hasAccess = await window.checkDiscoverAccess();
     console.log('Has discover access:', hasAccess);
     
+    // Store admin status globally for rendering
+    window.isDiscoverAdmin = hasAccess;
+    
     const adminControls = document.getElementById('discover-admin-controls');
     console.log('Admin controls element:', adminControls);
     
@@ -67,14 +424,373 @@ window.initDiscoverPage = async function() {
         adminControls.style.display = 'block';
     } else {
         console.log('❌ Not showing admin controls. Has access:', hasAccess, 'Element exists:', !!adminControls);
+        if (adminControls) {
+            adminControls.style.display = 'none';
+        }
     }
 
-      const vpnAdContainer = document.getElementById('discover-vpn-ad');
+    // Render all sweeps offers FIRST, then VPN ad LAST
+    const vpnAdContainer = document.getElementById('discover-vpn-ad');
     if (vpnAdContainer) {
-        vpnAdContainer.innerHTML = createVPNOfferAd();
+        // Build all sweeps offers HTML
+        let allOffersHtml = '';
+        
+        // Render sweeps offers first (pass admin status for edit button)
+        window.sweepsOffers.forEach(offer => {
+            allOffersHtml += createSweepsOfferAd(offer, hasAccess);
+        });
+        
+        // Render VPN ad last
+        allOffersHtml += createVPNOfferAd();
+        
+        vpnAdContainer.innerHTML = allOffersHtml;
+    }
+    
+    // Inject edit button styles if not already present
+    if (!document.getElementById('sweeps-edit-styles')) {
+        const style = document.createElement('style');
+        style.id = 'sweeps-edit-styles';
+        style.textContent = `
+            .sweeps-edit-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: linear-gradient(135deg, #00d4ff, #0099cc);
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+                z-index: 10;
+                transition: all 0.3s ease;
+            }
+            .sweeps-edit-btn:hover {
+                background: linear-gradient(135deg, #00e5ff, #00b3e6);
+                transform: scale(1.05);
+            }
+            #edit-sweeps-modal .modal-content {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            #edit-sweeps-modal .form-group {
+                margin-bottom: 15px;
+            }
+            #edit-sweeps-modal label {
+                display: block;
+                margin-bottom: 5px;
+                color: #00d4ff;
+                font-weight: bold;
+            }
+            #edit-sweeps-modal input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #333;
+                border-radius: 8px;
+                background: #1a1a2e;
+                color: white;
+            }
+            #edit-sweeps-modal .submit-btn {
+                width: 100%;
+                padding: 15px;
+                background: linear-gradient(135deg, #00d4ff, #0099cc);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+            #edit-sweeps-modal .submit-btn:hover {
+                background: linear-gradient(135deg, #00e5ff, #00b3e6);
+            }
+        `;
+        document.head.appendChild(style);
     }
     
     loadDiscoverPosts();
+}
+
+// Create sweeps offer ad (same structure as VPN offer)
+function createSweepsOfferAd(offer, isAdmin = false) {
+    console.log('Creating sweeps ad for offer:', offer.id, 'isAdmin:', isAdmin);
+    return `
+        <div class="vpn-organic-ad" data-offer-id="${offer.id}" style="margin-bottom: 20px; position: relative;">
+            ${isAdmin ? `
+                <button class="sweeps-edit-btn" onclick="window.openEditSweepsModal(${offer.id}); return false;" title="Edit Offer">
+                    ✏️ Edit
+                </button>
+            ` : ''}
+            <div class="vpn-ad-header">
+                <h3 class="vpn-ad-title">
+                    <span>${offer.icon}</span> ${offer.title}
+                </h3>
+                <div class="vpn-ad-badge">${offer.badge}</div>
+            </div>
+            
+            <div class="vpn-ad-content">
+                <div class="vpn-ad-features">
+                    ${offer.features.map(feature => `
+                        <div class="vpn-ad-feature">
+                            <div class="vpn-ad-feature-icon">${feature.icon}</div>
+                            <div class="vpn-ad-feature-text">
+                                <h4>${feature.title}</h4>
+                                <p>${feature.description}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="vpn-ad-cta">
+                    <button class="vpn-ad-button" onclick="trackSweepsOffer('${offer.offerType}', '${offer.offerUrl}')">
+                        <span>${offer.buttonIcon}</span> ${offer.buttonText}
+                    </button>
+                    
+                    <div class="vpn-ad-device">
+                        <span>✅</span> ${offer.deviceText}
+                    </div>
+                    
+                    <p class="vpn-ad-note">
+                        ${offer.noteText}
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Open edit modal for sweeps offer
+window.openEditSweepsModal = function(offerId) {
+    console.log('🔧 openEditSweepsModal called with ID:', offerId);
+    const offer = window.sweepsOffers.find(o => o.id === offerId);
+    console.log('Found offer:', offer);
+    if (!offer) {
+        console.error('Offer not found for ID:', offerId);
+        return;
+    }
+    
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('edit-sweeps-modal');
+    if (!modal) {
+        console.log('Creating new modal...');
+        modal = document.createElement('div');
+        modal.id = 'edit-sweeps-modal';
+        modal.className = 'modal';
+        modal.style.cssText = 'display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; overflow-y: auto; padding: 20px;';
+        modal.innerHTML = `
+            <div class="modal-content" style="max-width: 600px; margin: 20px auto; background: #16213e; border-radius: 16px; padding: 20px; position: relative;">
+                <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: #00d4ff; margin: 0;">✏️ Edit Sweeps Offer</h2>
+                    <button class="close-btn" onclick="window.closeEditSweepsModal()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">&times;</button>
+                </div>
+                <form id="edit-sweeps-form" onsubmit="window.saveSweepsOffer(event)">
+                    <input type="hidden" id="edit-sweeps-id">
+                    
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="edit-sweeps-title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Icon (emoji)</label>
+                        <input type="text" id="edit-sweeps-icon" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Badge Text</label>
+                        <input type="text" id="edit-sweeps-badge" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Offer URL</label>
+                        <input type="url" id="edit-sweeps-url" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Button Text</label>
+                        <input type="text" id="edit-sweeps-button-text" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Button Icon (emoji)</label>
+                        <input type="text" id="edit-sweeps-button-icon" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Device Text</label>
+                        <input type="text" id="edit-sweeps-device" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Note Text</label>
+                        <input type="text" id="edit-sweeps-note" required>
+                    </div>
+                    
+                    <h4 style="margin: 20px 0 10px; color: #00d4ff;">Features (3)</h4>
+                    
+                    <div class="form-group">
+                        <label>Feature 1 Icon</label>
+                        <input type="text" id="edit-sweeps-f1-icon" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Feature 1 Title</label>
+                        <input type="text" id="edit-sweeps-f1-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Feature 1 Description</label>
+                        <input type="text" id="edit-sweeps-f1-desc" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Feature 2 Icon</label>
+                        <input type="text" id="edit-sweeps-f2-icon" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Feature 2 Title</label>
+                        <input type="text" id="edit-sweeps-f2-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Feature 2 Description</label>
+                        <input type="text" id="edit-sweeps-f2-desc" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Feature 3 Icon</label>
+                        <input type="text" id="edit-sweeps-f3-icon" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Feature 3 Title</label>
+                        <input type="text" id="edit-sweeps-f3-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Feature 3 Description</label>
+                        <input type="text" id="edit-sweeps-f3-desc" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">💾 Save Changes</button>
+                </form>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+    
+    // Fill form with current values
+    document.getElementById('edit-sweeps-id').value = offer.id;
+    document.getElementById('edit-sweeps-title').value = offer.title;
+    document.getElementById('edit-sweeps-icon').value = offer.icon;
+    document.getElementById('edit-sweeps-badge').value = offer.badge;
+    document.getElementById('edit-sweeps-url').value = offer.offerUrl;
+    document.getElementById('edit-sweeps-button-text').value = offer.buttonText;
+    document.getElementById('edit-sweeps-button-icon').value = offer.buttonIcon;
+    document.getElementById('edit-sweeps-device').value = offer.deviceText;
+    document.getElementById('edit-sweeps-note').value = offer.noteText;
+    
+    // Features
+    document.getElementById('edit-sweeps-f1-icon').value = offer.features[0]?.icon || '';
+    document.getElementById('edit-sweeps-f1-title').value = offer.features[0]?.title || '';
+    document.getElementById('edit-sweeps-f1-desc').value = offer.features[0]?.description || '';
+    document.getElementById('edit-sweeps-f2-icon').value = offer.features[1]?.icon || '';
+    document.getElementById('edit-sweeps-f2-title').value = offer.features[1]?.title || '';
+    document.getElementById('edit-sweeps-f2-desc').value = offer.features[1]?.description || '';
+    document.getElementById('edit-sweeps-f3-icon').value = offer.features[2]?.icon || '';
+    document.getElementById('edit-sweeps-f3-title').value = offer.features[2]?.title || '';
+    document.getElementById('edit-sweeps-f3-desc').value = offer.features[2]?.description || '';
+    
+    modal.style.display = 'block';
+}
+
+// Close edit modal
+window.closeEditSweepsModal = function() {
+    const modal = document.getElementById('edit-sweeps-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+// Save sweeps offer changes
+window.saveSweepsOffer = function(event) {
+    event.preventDefault();
+    
+    const offerId = parseInt(document.getElementById('edit-sweeps-id').value);
+    const offerIndex = window.sweepsOffers.findIndex(o => o.id === offerId);
+    
+    if (offerIndex === -1) return;
+    
+    // Update offer data
+    window.sweepsOffers[offerIndex] = {
+        ...window.sweepsOffers[offerIndex],
+        title: document.getElementById('edit-sweeps-title').value,
+        icon: document.getElementById('edit-sweeps-icon').value,
+        badge: document.getElementById('edit-sweeps-badge').value,
+        offerUrl: document.getElementById('edit-sweeps-url').value,
+        buttonText: document.getElementById('edit-sweeps-button-text').value,
+        buttonIcon: document.getElementById('edit-sweeps-button-icon').value,
+        deviceText: document.getElementById('edit-sweeps-device').value,
+        noteText: document.getElementById('edit-sweeps-note').value,
+        features: [
+            {
+                icon: document.getElementById('edit-sweeps-f1-icon').value,
+                title: document.getElementById('edit-sweeps-f1-title').value,
+                description: document.getElementById('edit-sweeps-f1-desc').value
+            },
+            {
+                icon: document.getElementById('edit-sweeps-f2-icon').value,
+                title: document.getElementById('edit-sweeps-f2-title').value,
+                description: document.getElementById('edit-sweeps-f2-desc').value
+            },
+            {
+                icon: document.getElementById('edit-sweeps-f3-icon').value,
+                title: document.getElementById('edit-sweeps-f3-title').value,
+                description: document.getElementById('edit-sweeps-f3-desc').value
+            }
+        ]
+    };
+    
+    // Save to localStorage for persistence
+    try {
+        localStorage.setItem('sweepsOffers', JSON.stringify(window.sweepsOffers));
+        console.log('💾 Sweeps offers saved to localStorage');
+    } catch (e) {
+        console.error('Failed to save to localStorage:', e);
+    }
+    
+    // Re-render offers
+    window.initDiscoverPage();
+    window.closeEditSweepsModal();
+    
+    if (typeof showNotification === 'function') {
+        showNotification('Offer updated successfully!', 'success');
+    }
+    
+    console.log('✅ Sweeps offer updated:', window.sweepsOffers[offerIndex]);
+}
+
+// Track sweeps offer clicks
+function trackSweepsOffer(offerType, offerUrl) {
+    console.log('Sweeps offer clicked:', offerType);
+    
+    // Track the click
+    if (window.supabaseClient && window.currentUser) {
+        window.supabaseClient
+            .from('offer_clicks')
+            .insert({
+                user_id: window.currentUser.id,
+                offer_type: offerType,
+                platform: 'web',
+                created_at: new Date().toISOString()
+            })
+            .then(() => {
+                console.log('Sweeps offer click tracked');
+            });
+    }
+    
+    // Redirect to offer
+    window.open(offerUrl, '_blank');
+    
+    // Show notification
+    if (typeof showNotification === 'function') {
+        showNotification('Opening offer...', 'info');
+    }
 }
 
 // Load discover posts from database
@@ -117,7 +833,7 @@ function displayDiscoverPosts() {
     container.innerHTML = window.currentDiscoverPosts.map(post => createDiscoverCard(post)).join('');
 }
 
-// Add to discover.js
+// VPN Offer Ad - NOW APPEARS LAST
 function createVPNOfferAd() {
     return `
         <div class="vpn-organic-ad">
@@ -358,90 +1074,6 @@ function checkDiscoverPostLink() {
     }
 }
 
-// Add to discover.js
-function createVPNOfferAd() {
-    return `
-        <div class="vpn-organic-ad">
-            <div class="vpn-ad-header">
-                <h3 class="vpn-ad-title">
-                    <span>🔒</span> ParudVPN for iOS
-                </h3>
-                <div class="vpn-ad-badge">Sponsored</div>
-            </div>
-            
-            <div class="vpn-ad-content">
-                <div class="vpn-ad-features">
-                    <div class="vpn-ad-feature">
-                        <div class="vpn-ad-feature-icon">🛡️</div>
-                        <div class="vpn-ad-feature-text">
-                            <h4>Ultimate Privacy Protection</h4>
-                            <p>Bank-grade encryption keeps your data secure</p>
-                        </div>
-                    </div>
-                    
-                    <div class="vpn-ad-feature">
-                        <div class="vpn-ad-feature-icon">⚡</div>
-                        <div class="vpn-ad-feature-text">
-                            <h4>Lightning Fast Speeds</h4>
-                            <p>Stream and browse without buffering</p>
-                        </div>
-                    </div>
-                    
-                    <div class="vpn-ad-feature">
-                        <div class="vpn-ad-feature-icon">🌍</div>
-                        <div class="vpn-ad-feature-text">
-                            <h4>Global Access</h4>
-                            <p>Connect to servers in 50+ countries worldwide</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="vpn-ad-cta">
-                    <button class="vpn-ad-button" onclick="trackOrganicVPNOffer()">
-                        <span>📱</span> Download for iOS
-                    </button>
-                    
-                    <div class="vpn-ad-device">
-                        <span>✅</span> Optimized for iPhone & iPad
-                    </div>
-                    
-                    <p class="vpn-ad-note">
-                        Free trial available • No credit card required
-                    </p>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Add tracking function
-function trackOrganicVPNOffer() {
-    console.log('Organic VPN offer clicked');
-    
-    // Track the click (non-incent)
-    if (window.supabaseClient && window.currentUser) {
-        window.supabaseClient
-            .from('offer_clicks')
-            .insert({
-                user_id: window.currentUser.id,
-                offer_type: 'organic_vpn',
-                platform: 'ios',
-                created_at: new Date().toISOString()
-            })
-            .then(() => {
-                console.log('VPN offer click tracked');
-            });
-    }
-    
-    // Redirect to offer (replace with your actual offer URL)
-    window.open('https://apps.apple.com/app/parudvpn', '_blank');
-    
-    // Show notification
-    if (typeof showNotification === 'function') {
-        showNotification('Opening ParudVPN in App Store...', 'info');
-    }
-}
-
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     checkDiscoverPostLink();
@@ -460,4 +1092,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-console.log('✅ Discover.js loaded');
+console.log('✅ Discover.js loaded with 20 sweeps offers');

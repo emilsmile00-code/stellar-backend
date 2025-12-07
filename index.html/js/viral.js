@@ -5,7 +5,7 @@
 window.currentViralPosts = [];
 window.currentViralCategory = 'all';
 
-// Check if user is admin or creator
+// Check if user is admin ONLY (removed creator access)
 window.checkViralAccess = async function() {
     if (!window.currentUser || !window.supabaseClient) {
         console.log('❌ No current user or supabase client');
@@ -15,7 +15,7 @@ window.checkViralAccess = async function() {
     console.log('🔍 Checking viral access for user:', window.currentUser.id);
     
     try {
-        // Check if admin
+        // Check if admin ONLY
         const { data: adminData, error: adminError } = await window.supabaseClient
             .from('admin_users')
             .select('*')
@@ -29,22 +29,9 @@ window.checkViralAccess = async function() {
             return true;
         }
         
-        // Check if creator
-        const { data: creatorData, error: creatorError } = await window.supabaseClient
-            .from('viral_creators')
-            .select('*')
-            .eq('user_id', window.currentUser.id)
-            .eq('is_approved', true)
-            .single();
+        // REMOVED: Creator check - only admins can create viral posts
         
-        console.log('Creator check result:', { creatorData, creatorError });
-        
-        if (creatorData && !creatorError) {
-            console.log('✅ User is approved creator!');
-            return true;
-        }
-        
-        console.log('❌ User has no viral access');
+        console.log('❌ User is not an admin');
         return false;
     } catch (error) {
         console.error('Error checking viral access:', error);
@@ -68,6 +55,9 @@ window.initViralPage = async function() {
         adminControls.style.display = 'block';
     } else {
         console.log('❌ Not showing admin controls. Has access:', hasAccess, 'Element exists:', !!adminControls);
+        if (adminControls) {
+            adminControls.style.display = 'none';
+        }
     }
     
     loadViralPosts();
