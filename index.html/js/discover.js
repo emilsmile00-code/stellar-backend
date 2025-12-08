@@ -1,375 +1,11 @@
 // ======================================
 // DISCOVER PAGE FUNCTIONALITY
 // ======================================
+// NOTE: Sweeps offers data is loaded from sweeps-data.js
+// Edit sweeps-data.js to change your offers (persists on deploy)
+// ======================================
 
 window.currentDiscoverPosts = [];
-
-// ======================================
-// SWEEPS OFFERS DATA - EDIT YOUR OFFERS HERE
-// ======================================
-
-// Default offers (used if no saved data exists)
-const defaultSweepsOffers = [
-    {
-        id: 1,
-        title: "Sweepstakes Offer 1",
-        badge: "Sweepstakes",
-        icon: "🎁",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎁",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer1",
-        offerType: "sweeps_1"
-    },
-    {
-        id: 2,
-        title: "Sweepstakes Offer 2",
-        badge: "Sweepstakes",
-        icon: "🎰",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎰",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer2",
-        offerType: "sweeps_2"
-    },
-    {
-        id: 3,
-        title: "Sweepstakes Offer 3",
-        badge: "Sweepstakes",
-        icon: "💎",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "💎",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer3",
-        offerType: "sweeps_3"
-    },
-    {
-        id: 4,
-        title: "Sweepstakes Offer 4",
-        badge: "Sweepstakes",
-        icon: "🌟",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🌟",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer4",
-        offerType: "sweeps_4"
-    },
-    {
-        id: 5,
-        title: "Sweepstakes Offer 5",
-        badge: "Sweepstakes",
-        icon: "🎪",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎪",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer5",
-        offerType: "sweeps_5"
-    },
-    {
-        id: 6,
-        title: "Sweepstakes Offer 6",
-        badge: "Sweepstakes",
-        icon: "🎲",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎲",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer6",
-        offerType: "sweeps_6"
-    },
-    {
-        id: 7,
-        title: "Sweepstakes Offer 7",
-        badge: "Sweepstakes",
-        icon: "🎯",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎯",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer7",
-        offerType: "sweeps_7"
-    },
-    {
-        id: 8,
-        title: "Sweepstakes Offer 8",
-        badge: "Sweepstakes",
-        icon: "🏅",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🏅",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer8",
-        offerType: "sweeps_8"
-    },
-    {
-        id: 9,
-        title: "Sweepstakes Offer 9",
-        badge: "Sweepstakes",
-        icon: "🎀",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎀",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer9",
-        offerType: "sweeps_9"
-    },
-    {
-        id: 10,
-        title: "Sweepstakes Offer 10",
-        badge: "Sweepstakes",
-        icon: "💵",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "💵",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer10",
-        offerType: "sweeps_10"
-    },
-    {
-        id: 11,
-        title: "Sweepstakes Offer 11",
-        badge: "Sweepstakes",
-        icon: "🎊",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎊",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer11",
-        offerType: "sweeps_11"
-    },
-    {
-        id: 12,
-        title: "Sweepstakes Offer 12",
-        badge: "Sweepstakes",
-        icon: "🎉",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎉",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer12",
-        offerType: "sweeps_12"
-    },
-    {
-        id: 13,
-        title: "Sweepstakes Offer 13",
-        badge: "Sweepstakes",
-        icon: "🎈",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎈",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer13",
-        offerType: "sweeps_13"
-    },
-    {
-        id: 14,
-        title: "Sweepstakes Offer 14",
-        badge: "Sweepstakes",
-        icon: "🏆",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🏆",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer14",
-        offerType: "sweeps_14"
-    },
-    {
-        id: 15,
-        title: "Sweepstakes Offer 15",
-        badge: "Sweepstakes",
-        icon: "💫",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "💫",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer15",
-        offerType: "sweeps_15"
-    },
-    {
-        id: 16,
-        title: "Sweepstakes Offer 16",
-        badge: "Sweepstakes",
-        icon: "✨",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "✨",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer16",
-        offerType: "sweeps_16"
-    },
-    {
-        id: 17,
-        title: "Sweepstakes Offer 17",
-        badge: "Sweepstakes",
-        icon: "🎁",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎁",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer17",
-        offerType: "sweeps_17"
-    },
-    {
-        id: 18,
-        title: "Sweepstakes Offer 18",
-        badge: "Sweepstakes",
-        icon: "🎰",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🎰",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer18",
-        offerType: "sweeps_18"
-    },
-    {
-        id: 19,
-        title: "Sweepstakes Offer 19",
-        badge: "Sweepstakes",
-        icon: "💎",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "💎",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer19",
-        offerType: "sweeps_19"
-    },
-    {
-        id: 20,
-        title: "Sweepstakes Offer 20",
-        badge: "Sweepstakes",
-        icon: "🌟",
-        features: [
-            { icon: "🎯", title: "Feature Title 1", description: "Feature description goes here" },
-            { icon: "💰", title: "Feature Title 2", description: "Feature description goes here" },
-            { icon: "🏆", title: "Feature Title 3", description: "Feature description goes here" }
-        ],
-        buttonText: "Enter Now",
-        buttonIcon: "🌟",
-        deviceText: "Available on all devices",
-        noteText: "No purchase necessary • Free entry",
-        offerUrl: "https://example.com/offer20",
-        offerType: "sweeps_20"
-    }
-];
-
-// Load saved offers from localStorage or use defaults
-function loadSweepsOffers() {
-    try {
-        const saved = localStorage.getItem('sweepsOffers');
-        if (saved) {
-            const parsed = JSON.parse(saved);
-            console.log('📂 Loaded sweeps offers from localStorage:', parsed.length, 'offers');
-            return parsed;
-        }
-    } catch (e) {
-        console.error('Failed to load from localStorage:', e);
-    }
-    console.log('📂 Using default sweeps offers');
-    return defaultSweepsOffers;
-}
-
-// Initialize sweepsOffers from localStorage or defaults
-window.sweepsOffers = loadSweepsOffers();
 
 // Check if user is admin ONLY (removed creator access)
 window.checkDiscoverAccess = async function() {
@@ -436,8 +72,8 @@ window.initDiscoverPage = async function() {
         let allOffersHtml = '';
         
         // Render sweeps offers first (pass admin status for edit button)
-        window.sweepsOffers.forEach(offer => {
-            allOffersHtml += createSweepsOfferAd(offer, hasAccess);
+        window.sweepsOffers.forEach((offer, index) => {
+            allOffersHtml += createSweepsOfferAd(offer, index, hasAccess);
         });
         
         // Render VPN ad last
@@ -514,12 +150,12 @@ window.initDiscoverPage = async function() {
 }
 
 // Create sweeps offer ad (same structure as VPN offer)
-function createSweepsOfferAd(offer, isAdmin = false) {
-    console.log('Creating sweeps ad for offer:', offer.id, 'isAdmin:', isAdmin);
+function createSweepsOfferAd(offer, index, isAdmin = false) {
+    console.log('Creating sweeps ad for offer index:', index, 'isAdmin:', isAdmin);
     return `
-        <div class="vpn-organic-ad" data-offer-id="${offer.id}" style="margin-bottom: 20px; position: relative;">
+        <div class="vpn-organic-ad" data-offer-index="${index}" style="margin-bottom: 20px; position: relative;">
             ${isAdmin ? `
-                <button class="sweeps-edit-btn" onclick="window.openEditSweepsModal(${offer.id}); return false;" title="Edit Offer">
+                <button class="sweeps-edit-btn" onclick="window.openEditSweepsModal(${index}); return false;" title="Edit Offer">
                     ✏️ Edit
                 </button>
             ` : ''}
@@ -544,7 +180,7 @@ function createSweepsOfferAd(offer, isAdmin = false) {
                 </div>
                 
                 <div class="vpn-ad-cta">
-                    <button class="vpn-ad-button" onclick="trackSweepsOffer('${offer.offerType}', '${offer.offerUrl}')">
+                    <button class="vpn-ad-button" onclick="trackSweepsOffer('sweeps_${index}', '${offer.offerUrl}')">
                         <span>${offer.buttonIcon}</span> ${offer.buttonText}
                     </button>
                     
@@ -562,12 +198,12 @@ function createSweepsOfferAd(offer, isAdmin = false) {
 }
 
 // Open edit modal for sweeps offer
-window.openEditSweepsModal = function(offerId) {
-    console.log('🔧 openEditSweepsModal called with ID:', offerId);
-    const offer = window.sweepsOffers.find(o => o.id === offerId);
+window.openEditSweepsModal = function(offerIndex) {
+    console.log('🔧 openEditSweepsModal called with index:', offerIndex);
+    const offer = window.sweepsOffers[offerIndex];
     console.log('Found offer:', offer);
     if (!offer) {
-        console.error('Offer not found for ID:', offerId);
+        console.error('Offer not found for index:', offerIndex);
         return;
     }
     
@@ -677,7 +313,7 @@ window.openEditSweepsModal = function(offerId) {
     }
     
     // Fill form with current values
-    document.getElementById('edit-sweeps-id').value = offer.id;
+    document.getElementById('edit-sweeps-id').value = offerIndex;
     document.getElementById('edit-sweeps-title').value = offer.title;
     document.getElementById('edit-sweeps-icon').value = offer.icon;
     document.getElementById('edit-sweeps-badge').value = offer.badge;
@@ -711,10 +347,9 @@ window.closeEditSweepsModal = function() {
 window.saveSweepsOffer = function(event) {
     event.preventDefault();
     
-    const offerId = parseInt(document.getElementById('edit-sweeps-id').value);
-    const offerIndex = window.sweepsOffers.findIndex(o => o.id === offerId);
+    const offerIndex = parseInt(document.getElementById('edit-sweeps-id').value);
     
-    if (offerIndex === -1) return;
+    if (offerIndex < 0 || offerIndex >= window.sweepsOffers.length) return;
     
     // Update offer data
     window.sweepsOffers[offerIndex] = {
